@@ -1,0 +1,59 @@
+@startuml OfficerManagement
+class Officer {
+    - name: string
+    - age: int
+    - gender: string
+    - address: string
+    --
+    + Officer(name: string, age: int, gender: string, address: string)
+    + getName(): string
+    + setName(newName: string): void
+    + getAge(): int
+    + setAge(newAge: int): void
+    + getGender(): string
+    + setGender(newGender: string): void
+    + getAddress(): string
+    + setAddress(newAddress: string): void
+    + showInfo(): string
+}
+
+class Engineer {
+    - branch: string
+    --
+    + Engineer(name: string, age: int, gender: string, address: string, branch: string)
+    + getBranch(): string
+    + setBranch(newBranch: string): void
+    + showInfo(): string
+}
+
+class Worker {
+    - level: int
+    --
+    + Worker(name: string, age: int, gender: string, address: string, level: int)
+    + getLevel(): int
+    + setLevel(newLevel: int): void
+    + showInfo(): string
+}
+
+class Staff {
+    - task: string
+    --
+    + Staff(name: string, age: int, gender: string, address: string, task: string)
+    + getTask(): string
+    + setTask(newTask: string): void
+    + showInfo(): string
+}
+
+class ManagerOfficer {
+    - officers: vector<Officer>
+    --
+    + addOfficer(officer: Officer): void
+    + searchOfficerByName(name: string): void
+    + showAllOfficers(): void
+}
+
+Officer <|-- Engineer
+Officer <|-- Worker
+Officer <|-- Staff
+ManagerOfficer o--> Officer
+@enduml

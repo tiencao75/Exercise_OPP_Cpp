@@ -1,0 +1,113 @@
+@startuml EmployeeManagement
+
+abstract class Employee {
+    - id: string
+    - fullName: string
+    - birthDay: string
+    - phone: string
+    - email: string
+    - employeeType: int
+    - employeeCount: int
+    - certificates: vector<Certificate>
+    --
+    + Employee(id: string, name: string, birthDay: string, phone: string, email: string, type: int)
+    + ~Employee()
+    + addCertificate(cert: Certificate): void
+    + showInfo(): void
+    + getId(): string
+    + setId(newId: string): void
+    + getFullName(): string
+    + setFullName(newName: string): void
+    + getBirthDay(): string
+    + setBirthDay(newBirthDay: string): void
+    + getPhone(): string
+    + setPhone(newPhone: string): void
+    + getEmail(): string
+    + setEmail(newEmail: string): void
+    + getEmployeeType(): int
+    + setEmployeeType(newType: int): void
+}
+
+class Experience {
+    - expInYear: int
+    - proSkill: string
+    --
+    + Experience(id: string, name: string, birthDay: string, phone: string, email: string, exp: int, skill: string)
+    + ~Experience()
+    + showInfo(): void
+    + getExpInYear(): int
+    + setExpInYear(newExp: int): void
+    + getProSkill(): string
+    + setProSkill(newSkill: string): void
+}
+
+class Fresher {
+    - graduationDate: string
+    - graduationRank: string
+    - education: string
+    --
+    + Fresher(id: string, name: string, birthDay: string, phone: string, email: string, gradDate: string, rank: string, edu: string)
+    + ~Fresher()
+    + showInfo(): void
+    + getGraduationDate(): string
+    + setGraduationDate(newDate: string): void
+    + getGraduationRank(): string
+    + setGraduationRank(newRank: string): void
+    + getEducation(): string
+    + setEducation(newEdu: string): void
+}
+
+class Intern {
+    - majors: string
+    - semester: string
+    - universityName: string
+    --
+    + Intern(id: string, name: string, birthDay: string, phone: string, email: string, majors: string, semester: string, uni: string)
+    + ~Intern()
+    + showInfo(): void
+    + getMajors(): string
+    + setMajors(newMajors: string): void
+    + getSemester(): string
+    + setSemester(newSemester: string): void
+    + getUniversityName(): string
+    + setUniversityName(newUni: string): void
+}
+
+class Certificate {
+    - certificateID: string
+    - certificateName: strings
+    - certificateRank: string
+    - certificateDate: string
+    --
+    + Certificate(id: string, name: string, rank: string, date: string)
+    + ~Certificate()
+    + getCertificateID(): string
+    + setCertificateID(newId: string): void
+    + getCertificateName(): string
+    + setCertificateName(newName: string): void
+    + getCertificateRank(): string
+    + setCertificateRank(newRank: string): void
+    + getCertificateDate(): string
+    + setCertificateDate(newDate: string): void
+    + showCertificateInfo(): void
+}
+
+class ManagerEmployee {
+    - employees: vector<Employee>
+    --
+    + ManagerEmployee()
+    + ~ManagerEmployee()
+    + addEmployee(emp: Employee): void
+    + removeEmployeeByID(id: string): void
+    + updateEmployeeByID(id: string, updatedEmp: Employee): void
+    + searchEmployeeByType(type: int): vector<Employee>
+    + showAllEmployees(): void
+}
+
+Employee <|-- Experience
+Employee <|-- Fresher
+Employee <|-- Intern
+Employee "1" o-- "*" Certificate
+ManagerEmployee o-- "*" Employee
+
+@enduml

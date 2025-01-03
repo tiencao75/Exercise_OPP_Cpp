@@ -1,0 +1,65 @@
+@startuml bai2
+class Document {
+    - id: String
+    - publisher: String
+    - numberOfReleases: int
+    --
+    + Document(id: String, publisher: String, numberOfReleases: int)
+    + getId(): String
+    + setId(id: String): void
+    + getPublisher(): String
+    + setPublisher(publisher: String): void
+    + getNumberOfRelease(): int
+    + setNumberOfRelease(number: int): void
+    + showInfo(): void
+}
+
+class Book {
+    - author: String
+    - numerPage: int
+    --
+    + Book(id: String, publisher: String, numberOfReleases: int, author: String, numerPage: int)
+    + getAuthor(): String
+    + setAuthor(author: String): void
+    + getNumerPage(): int
+    + setNumerPage(numerPage: int): void
+    + showInfo(): void
+}
+
+class Journal {
+    - issueNumber: String
+    - monthIssue: String
+    --
+    + Journal(id: String, publisher: String, numberOfReleases: int, issueNumber: int, monthIssue: String)
+    + getIssueNumber(): String
+    + setIssueNumber(issueNumber: String): void
+    + getMonthIssue(): String
+    + setMonthIssue(monthIssue: String): void
+    + showInfo(): void
+}
+
+class Newspaper {
+    - dayIssue: String
+    --
+    + Newspaper(id: String, publisher: String, numberOfReleases: int, dayIssue: String)
+    + getDayIssue(): String
+    + setDayIssue(dayIssue: String): void
+    + showInfo(): void
+}
+
+class ManagerDocument {
+    - documents: vector<shared_ptr<Document>>
+    --
+    + addDocument(document: Document*): void
+    + deleteDocument(id: String): bool
+    + showInfor(): void
+    + searchByBook(): void
+    + searchByJournal(): void
+    + searchByNewspaper(): void
+}
+
+Document <|-- Book
+Document <|-- Journal
+Document <|-- Newspaper
+ManagerDocument o--> Document
+@enduml

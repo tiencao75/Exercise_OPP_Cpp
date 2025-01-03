@@ -1,0 +1,59 @@
+@startuml RecruimentManager
+
+abstract class Student {
+    - fullName : String
+    - doB : String
+    - sex : String
+    - phoneNumber : String
+    - universityName : String
+    - gradeLevel : String
+    {abstract} + ShowMyInfor() : void
+    + getFullName() : String
+    + setFullName(fullName : String) : void
+    + getDoB() : String
+    + setDoB(doB : String) : void
+    + getSex() : String
+    + setSex(sex : String) : void
+    + getPhoneNumber() : String
+    + setPhoneNumber(phoneNumber : String) : void
+    + getUniversityName() : String
+    + setUniversityName(universityName : String) : void
+    + getGradeLevel() : String
+    + setGradeLevel(gradeLevel : String) : void
+}
+
+class GoodStudent {
+    - gpa : float
+    - bestRewardName : String
+    + GoodStudent(fullName : String, doB : String, sex : String, phoneNumber : String, universityName : String, gradeLevel : String, gpa : float, bestRewardName : String)
+    + ShowMyInfor() : void
+    + getGpa() : float
+    + setGpa(gpa : float) : void
+    + getBestRewardName() : String
+    + setBestRewardName(bestRewardName : String) : void
+}
+
+class NormalStudent {
+    - englishScore : int
+    - entryTestScore : float
+    + NormalStudent(fullName : String, doB : String, sex : String, phoneNumber : String, universityName : String, gradeLevel : String, englishScore : int, entryTestScore : float)
+    + ShowMyInfor() : void
+    + getEnglishScore() : int
+    + setEnglishScore(englishScore : int) : void
+    + getEntryTestScore() : float
+    + setEntryTestScore(entryTestScore : float) : void
+}
+
+class RecruimentManager {
+    - students : Vector<Student>
+    + ~RecruimentManager()
+    + addStudent(student : Student) : void
+    + showAllStudents() : void
+    + recruitCandidates(numOfRecruitments : size_t) : void
+}
+
+Student <|-- GoodStudent
+Student <|-- NormalStudent
+RecruimentManager o--> "0..*" Student
+
+@enduml

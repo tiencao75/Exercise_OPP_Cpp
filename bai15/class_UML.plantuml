@@ -1,0 +1,76 @@
+@startuml bai15
+class StudyResult {
+    - semesterName : String
+    - semesterAverage : double
+    --
+    + StudyResult(semesterName: String, semesterAverage: double) : void
+    + ~StudyResult() : void
+}
+
+abstract class Student {
+    - studentId : String
+    - fullName : String
+    - dateOfBirth : String
+    - admissionYear : int
+    - entryScore : double
+    - studyResults : Vector<StudyResult>
+    --
+    + Student(studentId: String, fullName: String, dateOfBirth: String, admissionYear: int, entryScore: double) 
+    + virtual ~Student() 
+    + virtual showInfor() = 0 : void
+}
+
+class FullTimeStudent {
+    + RegularStudent() : void
+    + RegularStudent(studentId: String, fullName: String, dateOfBirth: String, admissionYear: int, entryScore: double) 
+    + ~RegularStudent() 
+    + showInfor() : void
+}
+
+class PartTimeStudent {
+    - trainingLocation : String
+    --
+    + PartTimeStudent() : void
+    + PartTimeStudent(studentId: String, fullName: String, dateOfBirth: String, admissionYear: int, entryScore: double, trainingLocation: String)
+    + ~PartTimeStudent() 
+    + showInfor() : void
+}
+
+class Faculty {
+    - facultyName: String
+    - students: Vector<std::unique_ptr<Student>>
+    --
+    + Faculty() : void
+    + Faculty(name: String) : void
+    + ~Faculty() : void
+    + addStudent(void): void
+    + getRegularStudentCount(): int
+    + defineRegularStudent(std::string ID): void
+    + findHighestEntryScoreStudent(): Student
+    + findPartTimeStudentsByPlace(place: String): List<PartTimeStudent>
+    + findHighGPAStudentsInLastSemester(minGPA: float): List<Student>
+    + findHighestGPASemesterStudent(): Student
+    + sortStudents(): void
+    + getStatisticsByYear(): int
+}
+
+class School {
+    + faculties: List<Faculty>
+    + School() : void
+    + School(const &School) : void
+    + ~School() : void
+    + addFaculty(faculty: Faculty): void
+    + getTotalStudents(): int
+    + findHighestEntryScoreStudent(): Student
+    + findAllHighGPAStudents(minGPA: float): List<Student>
+    + getStatisticsByYear(): Map<int, int>
+}
+
+' Relationships
+Student <|-- FullTimeStudent
+Student <|-- PartTimeStudent
+Student "0..*" o-- StudyResult
+Faculty "0..*" o-- Student
+School "0..*" o-- Faculty
+
+@enduml

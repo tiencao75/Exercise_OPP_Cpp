@@ -1,0 +1,60 @@
+@startuml bai3
+class Candidate {
+    - id: String
+    - name: string
+    - address: string
+    - priority: int
+    --
+    + Candidate(id: String, name: String, address: string, priority: int)
+    + ~Candidate(): void
+    + getId(): String
+    + setId(id: String): void
+    + getName(): String
+    + setName(publisher: String): void
+    + getAddress(): int
+    + setAddress(number: int): void
+    + getPriority(): void
+    + setPrioryty(prioryty: int): void
+    + showInfo(): void
+}
+
+class CandidateA {
+    - monToan: string
+    - monLy: string
+    - monHoa: string
+    --
+    + Candidate(id: string, name: string, address: string, priority: int)
+    + showInfor(): void
+}
+
+class CandidateB {
+    - monToan: string
+    - monHoa: string
+    - monSinh: string
+    --
+    + Candidate(id: string, name: string, address: string, priority: int)
+    + showInfor(): void
+}
+
+class CandidateC {
+    - monVan: string
+    - monSu: string
+    - monDia: string
+    --
+    + Candidate(id: string, name: string, address: string, priority: int)
+    + showInfor(): void
+}
+
+class ManagerCandidate {
+    - candidateList: vector<shared_ptr<Candidate>> 
+    --
+    + add(candidate: shared_ptr<Candidate>) : void
+    + showInfo() : void
+    + searchById(id: string) : shared_ptr<Candidate>
+}
+
+Candidate <|-- CandidateA
+Candidate <|-- CandidateB
+Candidate <|-- CandidateC
+ManagerCandidate o--> Candidate
+@enduml

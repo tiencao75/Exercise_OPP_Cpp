@@ -1,0 +1,44 @@
+@startuml bai4
+class Person {
+    - name : string
+    - age : int
+    - job : string
+    - passport : uint64_t
+    --
+    + Person(name : string, age : int, job : string, passport : uint64_t)
+    + ~Person() : void
+    + getName() : string
+    + setName(name : string) : void
+    + getAge() : int
+    + setAge(age : int) : void
+    + getJob() : string
+    + setJob(job : string) : void
+    + getPassport() : uint64_t
+    + setPassport(passport : uint64_t) : void
+    + showInfo() : string
+}
+
+class Family {
+    - personList : vector<shared_ptr<Person>>
+    - address : string
+    - memberNumber:  int
+    --
+    + Family(personList : vector<shared_ptr<Person>>, address : string, memberNumber : int)
+    + getAddress() : string
+    + setAddress(address : string) : void
+    + getMemberNumber() : int
+    + setMemberNumber() : void
+    + showInfor() : string
+}
+
+class Town {
+    - familyList : vector<shared_ptr<Family>>
+    --
+    + Town()
+    + showDataTown(): void 
+    + addFamily(family : shared_ptr<Family>) : void
+}
+
+Town "1" o--> "1..*" Family : contains
+Family "1" o--> "1..*" Person : contains
+@enduml
